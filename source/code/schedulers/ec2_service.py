@@ -181,7 +181,7 @@ class Ec2Service:
         self._logger.info("InstanceIds: {}", instance_ids)
         asg = client.describe_auto_scaling_instances_with_retries(InstanceIds=instance_ids)
         jmes = "AutoScalingInstances[*].AutoScalingGroupName"
-        return jmespath.search(jmes, response)
+        return jmespath.search(jmes, asg)
 
     def suspend_asg(self, instance_ids):
         client = get_client_with_retries("autoscaling",
